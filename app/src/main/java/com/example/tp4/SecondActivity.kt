@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
@@ -12,7 +13,9 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,8 +35,10 @@ class SecondActivity : ComponentActivity() {
 // Formulaire simple sur la page SecondActivity
 @Composable
 fun FormScreen(modifier: Modifier = Modifier) {
-    var field1 by remember { mutableStateOf("") }
-    var field2 by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var confirmepassword by remember { mutableStateOf("") }
     var submittedText by remember { mutableStateOf("") }
     val context = LocalContext.current
 
@@ -44,15 +49,15 @@ fun FormScreen(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Simple Form", fontSize = 32.sp)
-
+        Text(text = "Sign Up", fontSize = 32.sp)
+        Image(painter = painterResource(R.drawable.singup), contentDescription = null,  modifier = Modifier.fillMaxWidth(),contentScale = ContentScale.FillWidth )
         Spacer(modifier = Modifier.height(16.dp))
 
         // Champ 1
         TextField(
-            value = field1,
-            onValueChange = { field1 = it },
-            label = { Text("Field 1") },
+            value = name,
+            onValueChange = { name = it },
+            label = { Text("Name") },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -60,9 +65,23 @@ fun FormScreen(modifier: Modifier = Modifier) {
 
         // Champ 2
         TextField(
-            value = field2,
-            onValueChange = { field2 = it },
-            label = { Text("Field 2") },
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("Email") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        TextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("Password") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        TextField(
+            value = confirmepassword,
+            onValueChange = { confirmepassword = it },
+            label = { Text("Confirm password") },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -70,9 +89,9 @@ fun FormScreen(modifier: Modifier = Modifier) {
 
         // Bouton pour soumettre
         Button(onClick = {
-            submittedText = "Submitted: $field1 and $field2"
+            submittedText = "Submitted: $name and $email"
         }) {
-            Text("Submit")
+            Text("Sign Up")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -85,12 +104,6 @@ fun FormScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
 
         // Bouton pour aller à la NewFormActivity
-        Button(onClick = {
-            val intent = Intent(context, NewFormActivity::class.java)
-            context.startActivity(intent)
-        }) {
-            Text("Go to New Form")
-        }
     }
 }
 

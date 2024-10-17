@@ -4,12 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,7 +47,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Login", fontSize = 32.sp)
-
+        Image(painter = painterResource(R.drawable.login2), contentDescription = null,  modifier = Modifier.fillMaxWidth(),contentScale = ContentScale.FillWidth )
         Spacer(modifier = Modifier.height(16.dp))
 
         TextField(
@@ -75,14 +79,26 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                 errorMessage = "Please fill in both fields"
             } else {
                 errorMessage = ""
-                // Navigate to the SecondActivity
-                val intent = Intent(context, SecondActivity::class.java)
-                intent.putExtra("name", email)  // Pass the email to the next activity
-                context.startActivity(intent)
+
             }
         }) {
             Text("Login")
         }
+        Button(onClick = {
+                val intent = Intent(context, SecondActivity::class.java)
+                context.startActivity(intent)
+            }
+        ) {
+            Text("Sign Up")
+        }
+
+        Button(onClick = {
+            val intent = Intent(context, NewFormActivity::class.java)
+            context.startActivity(intent)
+        }) {
+            Text("forgot password?")
+        }
+
     }
 }
 
