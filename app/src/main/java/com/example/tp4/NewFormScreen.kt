@@ -49,7 +49,7 @@ fun NewFormScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Champ pour des informations supplémentaires
+
         TextField(
             value = email,
             onValueChange = { email = it },
