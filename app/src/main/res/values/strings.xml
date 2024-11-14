@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">tp4</string>
+    <string name="title_activity_hamepage">Hamepage</string>
+    <string name="title_activity_listeproduct">Listeproduct</string>
+    <string name="title_activity_pageinfo">Pageinfo</string>
+</resources>
