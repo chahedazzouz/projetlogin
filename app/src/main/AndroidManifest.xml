@@ -37,6 +37,8 @@
         <activity
             android:name=".Homepage"
             android:exported="true" />
+
     </application>
+
 
 </manifest>
